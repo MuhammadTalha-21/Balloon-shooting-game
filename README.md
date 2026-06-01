@@ -1,114 +1,119 @@
-# Balloon Shooting Game
+# 🎯 Balloon Shooting Game
+
 ### Assembly Language Project — Department of Computer Science
 
 ---
 
-## Overview
+## 🧠 Overview
 
-A real-time, interactive arcade-style game built entirely in x86 Assembly Language (8086)
-targeting real-mode DOS. The player moves a character up and down on the left side of the
-screen and shoots arrows at balloons floating from right to left. Miss 9 balloons and it's
-Game Over.
+**Balloon Shooting Game** is a real-time arcade-style game developed entirely in **x86 Assembly Language (8086)** for **real-mode DOS**.
 
-This project demonstrates low-level programming concepts including:
-- Direct video memory manipulation (segment 0B800h)
-- BIOS/DOS interrupt-driven input and output
-- Real-time game loop design
-- Collision detection at the register level
-- Score tracking with in-place screen updates
+The player controls a character positioned on the left side of the screen, moving vertically and shooting arrows at balloons drifting from right to left. Missing **9 balloons results in Game Over**.
+
+This project showcases low-level system programming and direct hardware interaction.
 
 ---
 
-## Team Members
+## 🚀 Key Concepts Demonstrated
 
-| Name       | Student ID | Responsibilities                  |
-|------------|------------|-----------------------------------|
-| Nahah Butt  | 23-UON-0338      | Game Logic, Collision Detection   |
-| Muhammad Talha   | 23-UON-0446    | UI Rendering, Score System        |
-
----
-
-## Controls
-
-| Key         | Action                  |
-|-------------|-------------------------|
-| Up Arrow    | Move player up          |
-| Down Arrow  | Move player down        |
-| Spacebar    | Shoot arrow             |
-| Enter       | Start / Restart game    |
+* Direct video memory manipulation (**0B800h**)
+* BIOS & DOS interrupt handling
+* Real-time game loop implementation
+* Register-level collision detection
+* Dynamic score tracking with screen updates
 
 ---
 
-## Technical Details
+## 👨‍💻 Team Members
 
-| Component     | Detail                              |
-|---------------|-------------------------------------|
-| Processor     | Intel 8086 / x86 (16-bit Real Mode) |
-| Memory Model  | .model Small                        |
-| Assembler     | MASM (Microsoft Macro Assembler)    |
-| Platform      | MS-DOS / DOSBox                     |
-| Video Memory  | 0B800h — CGA Color Text Mode        |
-| Screen Mode   | Text Mode 3 (80x25, 16 colors)      |
-| Keyboard      | BIOS INT 16h                        |
-| Output        | DOS INT 21h + INT 10h               |
+| Name           | Student ID  | Responsibilities                |
+| -------------- | ----------- | ------------------------------- |
+| Nahah Butt     | 23-UON-0338 | Game Logic, Collision Detection |
+| Muhammad Talha | 23-UON-0446 | UI Rendering, Score System      |
 
 ---
 
-## How to Run
+## 🎮 Controls
 
-Requirements:
-- DOSBox installed on your machine
-- MASM (Microsoft Macro Assembler)
-
-Steps:
-1. Mount your MASM directory in DOSBox:   MOUNT C C:\MASM
-2. Assemble the source file:              ML bubleshootinggame.asm
-3. Run the game:                          bubleshootinggame.exe
-
-Press Enter on the main menu to start playing!
+| Key          | Action               |
+| ------------ | -------------------- |
+| ⬆ Up Arrow   | Move player up       |
+| ⬇ Down Arrow | Move player down     |
+| Spacebar     | Shoot arrow          |
+| Enter        | Start / Restart game |
 
 ---
 
-## Project Structure
+## ⚙️ Technical Specifications
 
+| Component    | Details                             |
+| ------------ | ----------------------------------- |
+| Processor    | Intel 8086 / x86 (16-bit Real Mode) |
+| Memory Model | Small Model (.model small)          |
+| Assembler    | MASM (Microsoft Macro Assembler)    |
+| Platform     | MS-DOS / DOSBox                     |
+| Video Memory | 0B800h (CGA Text Mode)              |
+| Screen Mode  | 80×25 Text Mode (16 Colors)         |
+| Input        | BIOS Interrupt (INT 16h)            |
+| Output       | DOS INT 21h & BIOS INT 10h          |
+
+---
+
+## 📂 Project Structure
+
+```
 balloon-shooting-game/
 │
-├── bubleshootinggame.asm        -- Main game source code (Assembly)
-├── README.md                    -- Project documentation
+├── bubleshootinggame.asm        # Main game source code
+├── README.md                    # Documentation
 └── docs/
-    └── Balloon_Shooting_Game_Report.docx  -- Full project report
+    └── Balloon_Shooting_Game_Report.docx
+```
 
 ---
 
-## How It Works
+## 🔄 Game Logic
 
-Game Loop:
-1. Check BIOS keyboard buffer for input
-2. Handle keys (move player / fire arrow)
-3. Check miss count — Game Over if 9 or more
-4. Check collision (arrow_pos == loon_pos) — Hit!
-5. Move balloon left by 160 bytes (one screen row)
-6. Move arrow right by 4 bytes
-7. Render all sprites to video memory
-8. Repeat
+### Game Loop Flow
 
-Collision Detection:
-Collision is detected by comparing the 16-bit video memory offsets of the arrow and the
-balloon. When arrow_pos equals loon_pos, a beep sounds, the hit counter increments, and
-a new balloon spawns.
+1. Check keyboard input via BIOS buffer
+2. Handle movement and shooting actions
+3. Track missed balloons (Game Over at 9)
+4. Detect collisions between arrow & balloon
+5. Move balloons left across the screen
+6. Move arrows toward the target
+7. Render updated positions to video memory
+8. Repeat continuously
 
 ---
 
-## References
+## 💥 Collision Detection
 
-- Irvine, K. R. Assembly Language for x86 Processors (7th ed.), Pearson, 2014
-- Intel 8086 Family Users Manual, Intel Corporation, 1979
-- Ralf Brown's Interrupt List — http://www.ctyme.com/rbrown.htm
-- DOSBox Project — https://www.dosbox.com
+Collision is detected by comparing **16-bit video memory offsets** of the arrow and balloon.
+
+When both positions match:
+
+* A beep sound is triggered
+* Score increases
+* A new balloon is generated
 
 ---
 
-## License
+## 📚 References
 
-This project was developed for academic purposes as part of the Assembly Language
-course at the Department of Computer Science.
+* Irvine, K. R. *Assembly Language for x86 Processors (7th Edition)*
+* Intel 8086 Family User Manual
+* Ralf Brown’s Interrupt List
+* DOSBox Official Documentation
+
+---
+
+## 📄 License
+
+This project was developed for **academic purposes** as part of the Assembly Language course under the Department of Computer Science.
+
+---
+
+## ⭐ Support
+
+If you like this project, consider giving it a ⭐ on GitHub!
